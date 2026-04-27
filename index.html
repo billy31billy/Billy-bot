@@ -105,7 +105,7 @@ border-radius:10px;
 
 <body>
 
-<header>🎬 Ultimate Media Platform</header>
+<header>🎬 Ultimate Media Platform - Billy Bot</header>
 
 <!-- LOGIN -->
 <div id="login">
@@ -160,6 +160,7 @@ border-radius:10px;
 
 const API="YOUR_TMDB_API_KEY";
 const OPENAI="YOUR_OPENAI_API_KEY"; // اختياري
+const BOT_NAME="Billy Bot";
 
 let user="";
 let type="movie";
@@ -175,6 +176,7 @@ document.getElementById("login").style.display="none";
 document.getElementById("usern").innerText=user;
 
 notify("مرحبا "+user);
+add(BOT_NAME + ": أهلا وسهلا! أنا " + BOT_NAME + " 🤖","bot");
 load();
 }
 
@@ -251,11 +253,11 @@ let i=document.getElementById("msg");
 let t=i.value;
 if(!t) return;
 
-add(t,"user");
+add(user + ": " + t,"user");
 i.value="";
 
 setTimeout(async ()=>{
-add(await bot(t),"bot");
+add(BOT_NAME + ": " + await bot(t),"bot");
 },500);
 }
 
@@ -270,7 +272,7 @@ t=t.toLowerCase();
 
 if(t.includes("مرحبا")) return "أهلا 👋";
 if(t.includes("فيلم")) return "شاهد قسم المحتوى 🎬";
-if(t.includes("اسمك")) return "أنا مساعدك الذكي 🤖";
+if(t.includes("اسمك")) return "أنا " + BOT_NAME + " مساعدك الذكي 🤖";
 
 if(OPENAI && OPENAI.includes("sk-")){
 try{
